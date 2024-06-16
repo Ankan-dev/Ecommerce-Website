@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ecommerce</title>
+
+  <!--css link-->
+  <link rel="stylesheet" href="style.css">
+
+  <!--bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+
+  <!--Bootstrap Icons-->
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <link rel="shortcut icon" type="image/x-icon" href="./Assets/Icon.png" />
+
+</head>
+
+<body>
+
+  <!--Header starts-->
+  <header>
+
+    <!--first header-->
+
+    <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Ecommerce</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <form class="d-flex m-auto" role="search" >
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-warning" type="submit" id="search-btn">Search</button>
+          </form>
+          <ul class="navbar-nav m-auto">
+
+          </ul>
+          <div id="your-cart">
+            <h3>Your Cart</h3>
+          </div>
+          <button type="button" class="btn btn-light m-auto" id="register-btn">Register</button>
+          <div id="login-div">
+            <p id="header-username">username</p>
+            <button type="button" class="btn btn-light" id="logout-btn">Logout</button>
+          </div>
+          <div class="cart">
+            <div id="cart-image">
+              
+                <i class="bi bi-cart-fill"></i>
+        
+            </div>
+            <div id="no-of-items"> 0 </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+
+  </header>
+
+  <!--Header ends-->
+
+  <!--Main Starts-->
+
+  <main id="main">
+    <!--carousel-->
+
+    <section>
+      <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="./Assets/Banner1.png" class="d-block w-100" alt="...">
+            <button type="button" class="btn btn-warning" id="btn-1">Shop Now</button>
+          </div>
+          <div class="carousel-item">
+            <img src="./Assets/Banner2.png" class="d-block w-100" alt="...">
+            <button type="button" class="btn btn-warning" id="btn-2">Shop Now</button>
+          </div>
+          <div class="carousel-item">
+            <img src="./Assets/Banner3.png" class="d-block w-100" alt="...">
+            <button type="button" class="btn btn-warning" id="btn-3">Shop Now</button>
+          </div>
+          <div class="carousel-item">
+            <img src="./Assets/Banner4.png" class="d-block w-100" alt="...">
+            <button type="button" class="btn btn-warning" id="btn-4">Shop Now</button>
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
+          data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
+          data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </section>
+    <section id="items">
+      <div id="featured">
+        <h5>Featured</h2>
+        <div id="featured-card-section"></div>
+      </div>
+      <div id="new-collections">
+        <h5>Recent Collections</h2>
+          <div id="new-card-section"></div>
+      </div>
+    </section>
+    
+
+  </main>
+
+  <!--Main Ends-->
+
+  <!--info-display starts-->
+  <section id="product-details">
+    <div id="detail-card">
+      <div id="upper">
+        <div id="image-part"></div>
+        <div id="details-part">
+
+          <ul>
+            <li>
+              <h5>Name</h6>
+              <p id="name-of-product"></p>
+            </li>
+            <li>
+              <h5>Desciption</h6>
+              <div id="Desciption-of-product"></div>
+            </li>
+            <li>
+              <h5>Price</h6>
+              <p id="prices-of-product"></p>
+            </li>
+            <li>
+              <h5>Item Left</h6>
+              <p id="product-left"></p>
+            </li>
+          </ul>
+
+        </div>
+      </div>
+      <div id="bottom">
+        <button type="button" class="btn btn-warning" id="add-to-cart"> Add To Cart</button>
+        <p id="go-back"> <u>Go Back</u></p>
+      </div>
+    </div>
+  </section>
+
+  <!--info-display ends-->
+
+   <!--login-register starts-->
+   <section id="register-login-container">
+    <div id="register-login-card">
+     
+    </div>
+  </section>
+
+  <!--login-register ends-->
+
+  <!--Footer Starts-->
+
+  <footer class="section bg-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3">
+          <div class="">
+            <h6 class="footer-heading text-uppercase text-white">Information</h6>
+            <ul class="list-unstyled footer-link mt-4">
+              <li><a href="">Pages</a></li>
+              <li><a href="">Our Team</a></li>
+              <li><a href="">Feuchers</a></li>
+              <li><a href="">Pricing</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-lg-3">
+          <div class="">
+            <h6 class="footer-heading text-uppercase text-white">Ressources</h6>
+            <ul class="list-unstyled footer-link mt-4">
+              <li><a href="">Monitoring Grader </a></li>
+              <li><a href="">Video Tutorial</a></li>
+              <li><a href="">Term &amp; Service</a></li>
+              <li><a href="">Zeeko API</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-lg-2">
+          <div class="">
+            <h6 class="footer-heading text-uppercase text-white">Help</h6>
+            <ul class="list-unstyled footer-link mt-4">
+              <li><a href="">Sign Up </a></li>
+              <li><a href="">Login</a></li>
+              <li><a href="">Terms of Services</a></li>
+              <li><a href="">Privacy Policy</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-lg-4">
+          <div class="">
+            <h6 class="footer-heading text-uppercase text-white">Contact Us</h6>
+            <p class="contact-info mt-4">Contact us if need help withanything</p>
+            <p class="contact-info">+01 123-456-7890</p>
+            <div class="mt-5">
+              <ul class="list-inline">
+                <li class="list-inline-item"><a href="#"><i
+                      class="fab facebook footer-social-icon fa-facebook-f"></i></i></a></li>
+                <li class="list-inline-item"><a href="#"><i
+                      class="fab twitter footer-social-icon fa-twitter"></i></i></a></li>
+                <li class="list-inline-item"><a href="#"><i class="fab google footer-social-icon fa-google"></i></i></a>
+                </li>
+                <li class="list-inline-item"><a href="#"><i class="fab apple footer-social-icon fa-apple"></i></i></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="text-center mt-5">
+      <p class="footer-alt mb-0 f-14">2019 © Anup, All Rights Reserved</p>
+    </div>
+  </footer>
+
+  <!--Footer Ends-->
+
+  <button id="rzp-button1" class="btn btn-outline-dark btn-lg"><i class="fas fa-money-bill"></i> Own Checkout</button>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <script src="./Scripts/global.js" defer></script>
+  <script src="./Scripts/feature.js"></script>
+  <script src="./Scripts/recent.js" ></script>
+  <script src="./Scripts/category.js"></script>
+  <script src="./Scripts/filter.js" ></script>
+  <script src="./Scripts/viewDetails.js"></script>
+  <script src="./Scripts/RegisterLoginCard.js"></script>
+  <script src="./Scripts/login.js"></script>
+  <script src="./Scripts/register.js"></script>
+  <script src="./Scripts/cart.js"></script>
+  <script src="./Scripts/address.js"></script>
+  <script src="./Scripts/YourOrders.js"></script>
+  
+</body>
+
+</html>
