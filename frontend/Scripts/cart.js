@@ -123,20 +123,23 @@ function displayItems(items) {
             quantity.className = "quantity";
             let decrease = document.createElement("button");
             decrease.className = "decrease-button";
+            decrease.id=`decrease${element.product_id}`
             decrease.textContent = "-"
             let displayBox = document.createElement("div");
             displayBox.className = "quantity-display";
             let quantityNumber=document.createElement("h6");
             quantityNumber.className="quantity-number";
+            quantityNumber.id = `quantity-number-${element.product_id}`;
             quantityNumber.textContent=element.quantity;
             displayBox.appendChild(quantityNumber);
             let increase = document.createElement("button");
             increase.className = "increase-button";
+            increase.id=`increase${element.product_id}`;
             increase.textContent = "+"
             quantity.append(decrease, displayBox, increase);
             let Totalprice = document.createElement("h5");
             Totalprice.textContent = "₹"+element.price;
-            Totalprice.id="total-price-elm"
+            Totalprice.id=`total-price-elm-${element.product_id}`
             total+=parseFloat(element.price);
             let deleteBtn = document.createElement("button");
             deleteBtn.className = "dlt-btn";
@@ -144,11 +147,21 @@ function displayItems(items) {
             container.append(image, Itemname, quantity, Totalprice, deleteBtn);
             main.appendChild(container);
             deleteBtn.addEventListener("click",()=>deleteItem(element.username,element.  product_id,container,parseFloat(element.price)));
-            decrease.addEventListener("click",()=>decreaseQuantity(element.product_id,element.price));
-            increase.addEventListener("click",()=>increaseQuantity(element.product_id));
-
+            //decrease.addEventListener("click",()=>decreaseQuantity(element.product_id,element.price));
+            //increase.addEventListener("click",()=>increaseQuantity(element.product_id));
+            increaseItem(element.product_id,element.price,document.querySelector(`#increase${element.product_id}`))
+            decreaseItem(element.product_id,element.price,document.querySelector(`#decrease${element.product_id}`))
         });
 
+        function increaseItem(product,price,id){
+            id.addEventListener("click",()=>increaseQuantity(product,price)); 
+            console.log(id);
+        }
+
+        function decreaseItem(product,price,id){
+            id.addEventListener("click",()=>decreaseQuantity(product,price)); 
+            console.log(id);
+        }
         let totalPriceDisplay=document.createElement("div");
         totalPriceDisplay.id="total-price";
         let totalPrice=document.createElement("h2");
@@ -198,7 +211,7 @@ function deleteItem(username,product,container,price){
 
 }
 
-function decreaseQuantity(product){
+function decreaseQuantity(product,price){
     fetch(`${base_url}/cart.php?product_id=${product}&opr=dec&username=${loggedInUser}`,{
         method: "PUT",
         mode: "cors",
@@ -207,7 +220,10 @@ function decreaseQuantity(product){
     .then(res=>res.json())
     .then(data=>{
         if(data.update===true){
-            document.querySelector(".quantity-number").textContent=data.quantity;
+            document.querySelector(`#quantity-number-${product}`).textContent=data.quantity;
+            document.querySelector(`#total-price-elm-${product}`).textContent=data.price;
+            total-=parseFloat(price);
+            document.querySelector("#final-price").textContent=`Total Price : ₹${total}`;
         }else{
             alert("Quantity is minumum. It can't be reduced further");
         }
@@ -225,10 +241,10 @@ function increaseQuantity(product,price){
     .then(data=>{
         console.log(data);
         if(data.update===true){
-            document.querySelector(".quantity-number").textContent=data.quantity;
-            document.querySelector("#total-price-elm").textContent=data.price;
-            /*total+=parseFloat(price);
-            document.querySelector("#final-price").textContent=`Total Price : ₹${total}`;*/
+            document.querySelector(`#quantity-number-${product}`).textContent=data.quantity;
+            document.querySelector(`#total-price-elm-${product}`).textContent=data.price;
+            total+=parseFloat(price);
+            document.querySelector("#final-price").textContent=`Total Price : ₹${total}`;
         }else if(data.update==="exceeded"){
             alert("Not enough in stock");
         }else{

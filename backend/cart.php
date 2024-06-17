@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'PUT' && isset($_GET['product_id']) && isset(
             $actualPrice=mysqli_fetch_assoc($priceSend);
             if ($presentQuantity['quantity'] > 1) {
                 $newQuantity = $presentQuantity['quantity'] - 1;
-                $newPrice=$priceSend['price']*$newQuantity;
+                $newPrice=$actualPrice['price']*$newQuantity;
                 $decreaseQuery = "UPDATE cart SET price='$newPrice', quantity='$newQuantity' WHERE username='$username' AND product_id='$product_id'";
                 $result = mysqli_query($conn, $decreaseQuery);
 
