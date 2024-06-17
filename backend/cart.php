@@ -20,18 +20,29 @@ if ($requestMethod === "POST") {
     $image=mysqli_real_escape_string($conn,$input['image']);
     $price=$input['price'];
 
-    if($presentElm=isPresent($username,$product_id)){
-        $newQuantity=$presentElm['quantity']+1;
-        $newPrice=$presentElm['price']+$price;
-        updateQuantityPrice($username,$product_id,$newQuantity, $newPrice);
-    }else{
-        $query = " INSERT INTO cart (username,product_id,name,description,price,image,quantity) VALUES ('$username', '$product_id','$name' ,'$description','$price','$image',1)";
-
-        $result = mysqli_query($conn, $query);
-        if ($result) {
-            echo json_encode(["status" => true]);
-        } 
+    $inventoryQuery="SELECT stock FROM inventory WHERE product_id='$product_id'";
+    $inventoryResult=mysqli_query($conn,$inventoryQuery);
+    if($inventoryResult){
+        $currentStock=mysqli_fetch_assoc($inventoryResult);
+        if($currentStock['stock']>0){
+            if($presentElm=isPresent($username,$product_id)){
+                $newQuantity=$presentElm['quantity']+1;
+                $newPrice=$presentElm['price']+$price;
+                updateQuantityPrice($username,$product_id,$newQuantity, $newPrice);
+            }else{
+                $query = " INSERT INTO cart (username,product_id,name,description,price,image,quantity) VALUES ('$username', '$product_id','$name' ,'$description','$price','$image',1)";
+        
+                $result = mysqli_query($conn, $query);
+                if ($result) {
+                    echo json_encode(["status" => true]);
+                } 
+            }
+        }else{
+            echo json_encode(["status" => false]);
+        }
     }
+
+    
 
     } 
 

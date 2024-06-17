@@ -21,6 +21,11 @@ function loginFunction(e) {
                     loggedInUser=data.user;
                     getCartDetails(loggedInUser)
                     userAccount(user);
+                }else{
+                    document.querySelector("#login-error-message").style.display="block";
+                    document.querySelector("#login-username").style.borderColor="red";
+                    document.querySelector("#login-password").style.borderColor="red";
+                    document.querySelector("#register-form-btn").style.marginTop="10px";
                 }
             }
         })
@@ -51,7 +56,7 @@ function loggedin() {
         .then(data => {
             if (data) {
                 //console.log(loggedInUser);
-                if(data.user!="guest"){
+                if(data.user!="guest" && data.user!=null){
                     loggedInUser=data.user;
                     getCartDetails(loggedInUser)
                     userAccount(data.user);

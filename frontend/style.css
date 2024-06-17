@@ -790,3 +790,9 @@ main{
     cursor: pointer;
     text-decoration: underline;
 }
+
+#login-error-message{
+    color: red;
+    margin-top: 20px;
+    display: none;
+}

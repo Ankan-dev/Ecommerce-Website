@@ -43,7 +43,11 @@ function sendTocart(product) {
         credentials: 'include'
     })
         .then(res => res.json())
-        .then(data => console.log(data))
+        .then(data => {
+            if(data.status==false){
+                alert("Item is out of stock");
+            }
+        })
         .catch(error => console.log(error))
 }
 

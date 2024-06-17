@@ -27,10 +27,22 @@ if($requestMethod==="POST"){
             $product_name=$elm["name"];
             $image=$elm["image"];
             $price=$elm["price"];
-            $orderQuery="INSERT INTO orders (username,address,product_id,product_name,image,price) VALUES ('$username','$address','$product_id','$product_name','$image','$price')";
+            $quantity=$elm["quantity"];
+            $orderQuery="INSERT INTO orders (username,address,product_id,product_name,image,price,quantity) VALUES ('$username','$address','$product_id','$product_name','$image','$price','$quantity')";
             $statusResult=mysqli_query($conn,$orderQuery);
             if($statusResult){
-                $status=true;
+                $getstock="SELECT stock FROM inventory WHERE product_id='$product_id'";
+                $getstockRes=mysqli_query($conn,$getstock);
+                if($getstockRes){
+                    $presentStock=mysqli_fetch_assoc($getstockRes);
+                    $newStock=$presentStock["stock"]-$quantity;
+                    $updateStock="UPDATE inventory SET stock = '$newStock' WHERE product_id='$product_id'";
+                    $updateStockRes=mysqli_query($conn,$updateStock);
+                    if($updateStockRes){
+                        $status=true;
+                    }
+                }
+                
             }
         }
         if($status==true){
